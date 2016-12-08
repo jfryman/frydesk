@@ -1,4 +1,6 @@
 require 'rubygems'
+require 'rubyserial'
+require 'rpi_gpio'
 require 'mqtt'
 
 client = MQTT::Client.connect(
@@ -10,6 +12,6 @@ client = MQTT::Client.connect(
 )
 
 # Setup Relays
-# RPi::GPIO.set_numbering :bcm
-# RPi::GPIO.setup ENV['UP_GPIO_PIN'],       :as => :output
-# RPi::GPIO.setup ENV['DOWN_GPIO_PIN'],     :as => :output
+RPi::GPIO.set_numbering :bcm
+RPi::GPIO.setup ENV['UP_GPIO_PIN'],       :as => :output
+RPi::GPIO.setup ENV['DOWN_GPIO_PIN'],     :as => :output

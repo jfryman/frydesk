@@ -9,7 +9,7 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends \
 ENV INITSYSTEM on
 
 COPY . /usr/src/app
+WORKDIR /usr/src/app
 RUN bundle install
 
-WORKDIR /usr/src/app
 CMD bundle exec ruby app.rb

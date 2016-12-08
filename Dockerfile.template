@@ -13,4 +13,4 @@ COPY ./Gemfile /Gemfile
 RUN bundle install
 
 COPY . /
-CMD ["bundle" "exec" "ruby", "app.rb"]
+CMD bundle exec ruby app.rb

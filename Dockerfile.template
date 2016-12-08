@@ -11,5 +11,6 @@ ENV INITSYSTEM on
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
+RUN bundle -j 4
 
 CMD ["bundle" "exec" "ruby", "app.rb"]

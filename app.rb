@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'rubyserial'
-# require 'rpi_gpio'
+require 'rpi_gpio'
 # require 'mqtt'
 
 # client = MQTT::Client.connect(
@@ -12,15 +12,18 @@ require 'rubyserial'
 # )
 
 # Setup Relays
-# RPi::GPIO.set_numbering :bcm
-# RPi::GPIO.setup ENV['UP_GPIO_PIN'],       :as => :output
-# RPi::GPIO.setup ENV['DOWN_GPIO_PIN'],     :as => :output
+RPi::GPIO.set_numbering :bcm
+RPi::GPIO.setup ENV['UP_GPIO_PIN'],       :as => :output
+RPi::GPIO.setup ENV['DOWN_GPIO_PIN'],     :as => :output
 
-serialport = Serial.new '/dev/ttyAMA0'
+serialport = Serial.new ENV['DISTANCE_DEVICE']
 
-Thread.new do
-  while true do
-    puts serialport.read(8)
-    sleep 1
-  end
-end
+# Test Device Goes Up 5 seconds
+RPi::GPIO.set_high ENV['UP_GPIO_PIN']
+sleep 5
+RPi::GPIO.set_low ENV['UP_GPIO_PIN']
+
+# Test Device goes down 5 seconds
+RPi::GPIO.set_high ENV['DOWN_GPIO_PIN']
+sleep 5
+RPi::GPIO.set_low ENV['DOWN_GPIO_PIN']

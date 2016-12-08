@@ -27,3 +27,6 @@ RPi::GPIO.set_low ENV['UP_GPIO_PIN']
 RPi::GPIO.set_high ENV['DOWN_GPIO_PIN']
 sleep 5
 RPi::GPIO.set_low ENV['DOWN_GPIO_PIN']
+
+puts "Done"
+sleep 9999999

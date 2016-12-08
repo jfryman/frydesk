@@ -8,9 +8,8 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends \
 #switch on systemd init system in container
 ENV INITSYSTEM on
 
-WORKDIR /usr/src/app
-COPY ./Gemfile /Gemfile
+COPY . /usr/src/app
 RUN bundle install
 
-COPY . /
+WORKDIR /usr/src/app
 CMD bundle exec ruby app.rb

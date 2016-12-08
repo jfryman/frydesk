@@ -15,3 +15,12 @@ client = MQTT::Client.connect(
 RPi::GPIO.set_numbering :bcm
 RPi::GPIO.setup ENV['UP_GPIO_PIN'],       :as => :output
 RPi::GPIO.setup ENV['DOWN_GPIO_PIN'],     :as => :output
+
+serialport = Serial.new '/dev/ttyAMA0'
+
+Thread.new do
+  while true do
+    puts serialport.read(8)
+    sleep 1
+  end
+end
